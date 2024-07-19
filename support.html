@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Support</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .faq-section {
+            background-color: #4592eb;
+            color: #0a0a0a;
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .navbar {
+            background-color: #fff;
+        }
+
+        .warranty-section {
+            background-color: #4592eb;
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .header-section {
+            background-color: #4592eb; 
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+
+        .header-section h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .header-section p {
+            font-size: 1.5rem;
+            margin-bottom: 0;
+        }
+
+        .footer-section {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+
+        .footer-section h5 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .list-group-item {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg fixed-top">
+            <div class="container">
+                <a class="navbar-brand me-auto" href="index.html"><img src="SKY.png" alt="Logo" height="40"></a>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-body">
+                        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+                            <li class="nav-item">
+                                <a class="nav-link mx-lg-2" href="home.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-lg-2" href="about.html">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-lg-2" href="shop.html">Shop</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-lg-2" href="cart.html">Cart</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="index.html" class="login-button">Login</a>
+                <button class="navbar-toggler pe-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- New Section: Header Section -->
+    <section class="header-section">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col">
+                    <h2>Support</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" id="search-input" class="form-control" placeholder="Search for FAQs or products...">
+                <ul id="search-results" class="list-group mt-3"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    What is Sky Fiber?
+                </h5>
+            </div>
+            <div class="card-body">
+                Sky Fiber is an internet and TV provider.
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    How can I contact support?
+                </h5>
+            </div>
+            <div class="card-body">
+                You can contact support through our contact page or by calling our hotline.
+            </div>
+        </div>
+    </div>
+
+    <div class="container warranty-section">
+        <h2>Product Warranty</h2>
+        <p>All Sky Fiber products come with a one-year warranty covering manufacturing defects. For more information, please visit our warranty page or contact our support team.</p>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center mt-4 footer-section">
+        <h5>We'd love to hear from you</h5>
+        <p>John Raphael C. Manipor | jrmanipor1@gmail.com</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Mock data for products (to be replaced with dynamic data from shop.html)
+        const products = [
+            { name: 'Basic Plan', description: 'Up to 100mbs - ₱1,699/mo' },
+            { name: 'Standard Plan', description: 'Up to 200mbs - ₱2,499/mo' },
+            { name: 'Pro Plan', description: '400Mbps - ₱2,999/mo' }
+        ];
+
+        // Function to filter and display search results
+        function searchProducts(query) {
+            const results = products.filter(product =>
+                product.name.toLowerCase().includes(query.toLowerCase()) ||
+                product.description.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<li class="list-group-item">No products found.</li>';
+            } else {
+                results.forEach(product => {
+                    const li = document.createElement('li');
+                    li.className = 'list-group-item';
+                    li.textContent = `${product.name}: ${product.description}`;
+                    li.onclick = function() {
+                        window.location.href = `shop.html?search=${encodeURIComponent(product.name)}`;
+                    };
+                    resultsContainer.appendChild(li);
+                });
+            }
+        }
+
+        // Event listener for search input
+        document.getElementById('search-input').addEventListener('input', function() {
+            searchProducts(this.value);
+        });
+    </script>
+</body>
+</html>
